@@ -1,0 +1,1 @@
+../bundle/vim-scala/ftdetect/scala.vim

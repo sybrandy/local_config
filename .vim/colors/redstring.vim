@@ -1,0 +1,1 @@
+../bundle/redstring.vim/colors/redstring.vim

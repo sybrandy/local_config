@@ -1,0 +1,23 @@
+[user]
+	email = <email_addr>
+	name = <Name>
+[gui]
+	fontui = -family terminus -size 9 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family terminus -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[alias]
+    graph = log --graph --pretty=format:'\t%Cred%h %Cgreen(%ad - %ar)%Creset\t|%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=short
+    co = commit -v
+    me = merge --no-ff --no-commit
+    standup = "!git log --since '3 days ago' --author `git config user.email` --pretty=format:'%Cgreen%ar\t%Creset%s'"
+    purr = pull --rebase
+    listbranch = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+[merge]
+	conflictstyle = diff3
+[diff]
+	algorithm = patience
+[push]
+	default = current

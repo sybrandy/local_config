@@ -1,0 +1,125 @@
+$ echo "ps aux > ~/stats.txt" | at 23:00
+
+    Allows one-off commands to be scheduled for a certain time
+
+$ echo "~/put-kettle-on.sh" | at teatime
+
+    Sophisticated time specifications
+    Job list can be inspected with atq
+
+echo "~/heavy-process.sh" | batch
+
+    Only runs command when system load drops below 1.5
+
+--------------------------------------------------------------------------------
+
+Beep when server comes back up
+$ ping -i 60 -a $IPADDRESS
+
+    Ping every 60 seconds
+    Beep when a packet is received
+
+--------------------------------------------------------------------------------
+
+Shorthand/DSL for retreiving and manipulating historical commands.
+$ !12 	Command number 12 from ~/.bash_history
+$ !-2 	Command before last
+$ !zi 	Last command that started 'zi'
+$ !! 	Last command (same as !-1)
+
+Digression: Oops - forgot the sudo
+:w !sudo tee %
+
+    Vim equivalent of sudo !!
+
+--------------------------------------------------------------------------------
+
+History expansion 3: Modifiers
+
+    Modifies behaviour of preceding event/word designators
+    $ !zip:p 	Print previous command starting 'zip' but don't execute it
+    $ cd !$:h 	Change directory to "head" of previous last argument (similar to using dirname)
+    $ !!:s/foo/bar 	Execute previous command but replace 'foo' with 'bar'
+    $ ^foo^bar 	Shorthand for the above
+
+--------------------------------------------------------------------------------
+
+Digression: custom prompts
+david@earth:~ $ root@mysite-app1:tmp $
+
+    In ~/.bashrc:
+
+    if [ `id -u` = 0 ]; then
+        PS1="\[\e[31m\]\u@\h:\W \$ \[\e[30m\]"
+    else 
+        PS1="\[\e[34m\]\u@\h:\W \$ \[\e[30m\]"
+    fi
+    export PS1
+
+    Keep useful information in your prompt
+
+--------------------------------------------------------------------------------
+
+Edit a remote file using: vim
+$ vim scp://user@host//path/to/file
+
+    Opens remote file within Vim
+
+$ vimdiff /etc/fstab scp://user@host//etc/fstab
+
+    Also works with vimdiff
+
+--------------------------------------------------------------------------------
+
+Brace expansion
+cp /path/to/file{,.bak}
+
+    Equivalent to:
+
+cp /path/to/file /path/to/file.bak
+
+    Can be used in sequences and with wildcards
+
+$ cssh mysite-{app,db}{1..32}
+$ ls *.{jpg,jpeg,png} 
+
+--------------------------------------------------------------------------------
+
+$ less +F /var/log/apache2/error.log
+
+    Run less in "follow" mode
+
+--------------------------------------------------------------------------------
+
+Flush file
+$ > /var/log/apache2/error.log
+
+    Flushes contents of file
+
+--------------------------------------------------------------------------------
+
+Gzip a file with a progress bar.
+    pv file | gzip > file.gz
+
+--------------------------------------------------------------------------------
+
+Refactor many files of the same type:
+    Ex: args **/*.java
+        argdo %s/foo/bar/ | w
+
+--------------------------------------------------------------------------------
+
+Create links to multiple executables in one directory.
+
+find ../path/to/files/ -type f -executable |  xargs -I {} sh -c 'ln -s {} `basename {}`'
+
+--------------------------------------------------------------------------------
+
+Show the sizes of files in sorted order from largest to smallets.
+
+wc -l `find ...` | sort -rgb
+
+The "find" command portion will be custom for each project.  For example, to
+see the size of all files that are not test files:
+
+wc -l `find . -name *.java | grep -vi test` | sort -rgb
