@@ -97,10 +97,21 @@ gen_prompt()
     else
         prompt_text=''
     fi
+
+    # RVM Prompt Info
+    rvmcolor=$'\e[0;33m'
+    if [ -e ~/.rvm/ ]; then
+        RVM=$(~/.rvm/bin/rvm-prompt)
+        if [[ -n $RVM ]]; then
+            rvm_prompt="[$RVM]"
+        else
+            rvm_prompt=''
+        fi
+    fi
 }
 
 PROMPT_COMMAND=gen_prompt
-PS1='\[$COLOR\]\w \[$dirtycolor\]$prompt_text\[$COLOR\]\$\[\e[0m\] '
+PS1='\[$COLOR\]\w \[$rvmcolor\]\[$rvm_prompt\]\[$dirtycolor\]$prompt_text\[$COLOR\]\$\[\e[0m\] '
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -110,8 +121,3 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
-# Some old prompt configuration.
-# if [ -e ~/.rvm/ ]; then
-#     PS1="\$(~/.rvm/bin/rvm-prompt g) $PS1"
-# fi

@@ -94,10 +94,10 @@ if [ -n "$PS1" ]; then
 fi
 
 # RVM Config
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 # [[ -e ~/.rvm ]] && rvm use 1.9.2@Cyber
-[[ -s "/opt/rvm/scripts/rvm" ]] && source "/opt/rvm/scripts/rvm"
-[[ -e "/opt/rvm/scripts/rvm" ]] && PATH=$PATH:/opt/rvm/bin # Add RVM to PATH for scripting
+# [[ -s "/opt/rvm/scripts/rvm" ]] && source "/opt/rvm/scripts/rvm"
+# [[ -e "/opt/rvm/scripts/rvm" ]] && PATH=$PATH:/opt/rvm/bin # Add RVM to PATH for scripting
 
 # Perlbrew Config
 [[ -e ~/perl5/ ]] && perlbrew use perl-5.8.9

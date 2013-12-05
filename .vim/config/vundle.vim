@@ -95,7 +95,7 @@ Bundle 'https://github.com/Raimondi/delimitMate.git'
 
 Bundle 'https://github.com/Shougo/vimproc.vim.git'
 Bundle 'https://github.com/Shougo/unite.vim.git'
-" For ack.
+" For ag or ack.
 if executable('ag')
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '--nocolor -t --noheading'
@@ -111,3 +111,11 @@ map <leader>s :Unite -auto-preview grep:.<cr>
 
 Bundle 'https://github.com/osyo-manga/vim-over.git'
 map <leader>o :OverCommandLine<cr>
+
+Bundle 'https://github.com/benmills/vimux.git'
+let g:VimuxOrientation="h"
+let g:VimuxHeight="40"
+map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vl :VimuxRunLastCommand<CR>
+map <Leader>vq :VimuxCloseRunner<CR>
+map <Leader>vx :VimuxInterruptRunner<CR>
