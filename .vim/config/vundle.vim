@@ -48,13 +48,6 @@ let g:rbpt_colorpairs = [
     \ ['red',         'firebrick3'],
     \ ]
 
-" Enhanced tab management
-Bundle "http://github.com/kien/tabman.vim"
-
-" Ruby/Rails and tmux
-" Bundle "http://github.com/jgdavey/tslime.vim"
-" Bundle "http://github.com/jgdavey/vim-turbux"
-
 " Used currently just to see which branch we're working on.
 Bundle "git://github.com/tpope/vim-fugitive.git"
 
@@ -106,7 +99,8 @@ elseif executable('ack-grep')
   let g:unite_source_grep_default_opts = '--no-heading --no-color -a -H'
   let g:unite_source_grep_recursive_opt = '-r'
 endif
-nnoremap <C-p> :Unite -start-insert file_rec/async<cr>
+" nnoremap <C-p> :Unite -start-insert file_rec/async<cr>
+map <leader>f :Unite -start-insert file_rec/async<cr>
 map <leader>b :Unite -quick-match -auto-preview buffer<cr>
 map <leader>s :Unite -auto-preview grep:.<cr>
 
