@@ -28,7 +28,7 @@ try
 catch
 endtry
 
-filetype plugin on
+" filetype plugin on
 set foldmethod=marker
 
 try
