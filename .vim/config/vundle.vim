@@ -116,5 +116,16 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 map <Leader>vq :VimuxCloseRunner<CR>
 map <Leader>vx :VimuxInterruptRunner<CR>
 
+" Snippets.
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neosnippet'
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+let g:neosnippet#snippets_directory="snippets/*.snip"
+
 " This needs to be done after all the vundel config is taken care of.
 filetype plugin indent on
