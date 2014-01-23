@@ -106,3 +106,5 @@ fi
 
 # Run twolfson/sexy-bash-prompt
 . ~/.bash_prompt
+
+weather(){ curl -s "http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=${@:-21104}"|perl -ne '/<title>([^<]+)/&&printf "%s: ",$1;/<fcttext>([^<]+)/&&print $1,"\n"';}
