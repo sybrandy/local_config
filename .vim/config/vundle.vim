@@ -125,7 +125,11 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
-let g:neosnippet#snippets_directory="snippets/*.snip"
+let g:neosnippet#snippets_directory="~/.vim/snippets/"
+
+" Task management/TODO List
+Bundle 'davidoc/taskpaper.vim'
+let g:task_paper_date_format = "%Y-%m-%dT%H:%M:%S%z"
 
 " This needs to be done after all the vundel config is taken care of.
 filetype plugin indent on
