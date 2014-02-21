@@ -108,3 +108,6 @@ fi
 . ~/.bash_prompt
 
 weather(){ curl -s "http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=${@:-21104}"|perl -ne '/<title>([^<]+)/&&printf "%s: ",$1;/<fcttext>([^<]+)/&&print $1,"\n"';}
+nstat(){
+    netstat -tulp --numeric-ports | awk '/tcp|udp/ {print $1,"\t",$4,"\t",$7;}' | column -t
+}
