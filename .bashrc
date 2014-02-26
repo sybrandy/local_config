@@ -11,7 +11,12 @@ export AWT_TOOLKIT=MToolkit
 #[ -z "$PS1" ] && return
 if [ -n "$PS1" ]; then
 
-    export JAVA_HOME=/usr/lib/jvm/default-java
+    if [[ -e /usr/lib/jvm/default-java ]]; then
+        export JAVA_HOME=/usr/lib/jvm/default-java
+    fi
+    if [[ -e /usr/lib/jvm/java-1.7.0-openjdk-amd64 ]]; then
+        export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+    fi
     PATH=$PATH:$JAVA_HOME/bin:$M2
     ETL_HOME=/home/blockcipher/dev/etl
     export CLASSPATH=~/.m2/repository/
