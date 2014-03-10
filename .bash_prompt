@@ -100,13 +100,17 @@ gen_prompt()
 
     # RVM Prompt Info
     rvmcolor=$'\e[0;33m'
-    if [ -e ~/.rvm/ ]; then
-        RVM=$(~/.rvm/bin/rvm-prompt)
-        if [[ -n $RVM ]]; then
-            rvm_prompt="[$RVM]"
-        else
-            rvm_prompt=''
-        fi
+    version=""
+    gemset=""
+    if [ -e .ruby-version ]; then
+        version=$(cat .ruby-version)
+    fi
+    if [ -e .ruby-gemset ]; then
+        gemset=$(cat .ruby-gemset)
+    fi
+    rvm_prompt="$version@$gemset"
+    if [[ $rvm_prompt = '@' ]]; then
+        rvm_prompt=''
     fi
 }
 
