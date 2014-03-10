@@ -19,7 +19,7 @@ beautiful.init("/usr/share/awesome/themes/custom/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 --terminal = "uxterm -bg black -fg white -fa xft:terminus -fs 8"
-terminal = "uxterm -bg black -fg white -fa 'Liberation Mono for Powerline' -fs 10"
+terminal = "uxterm -bg black -fg white -fa 'Liberation Mono for Powerline' -fs 8"
 
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
@@ -76,17 +76,75 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 -- {{{ Wibox
 -- Create a textclock widget
-mytextclock = awful.widget.textclock({ align = "right" })
+mytextclock = widget({ type = "textbox" })
+vicious.register(mytextclock, vicious.widgets.date, "%F %R", 10)
 
 myCpuWidget = widget({ type = "textbox" })
-vicious.register(myCpuWidget, vicious.widgets.cpu, "<span color='cyan'>$1%</span>")
+vicious.register(myCpuWidget, vicious.widgets.cpu, "CPU: $1% $2% | ")
+
+myMemWidget = widget({ type = "textbox" })
+vicious.register(myMemWidget, vicious.widgets.mem,
+    function (widget, args)
+        used = args[1]
+        color = "white"
+        if used <= 50 then
+            color = "green"
+        elseif used <= 90 then
+            color = "yellow"
+        else
+            color = "red"
+        end
+        return "Mem: <span color='" .. color .. "'>" .. used .. "%</span> | "
+    end
+)
+
+myDiskWidget = widget({ type = "textbox" })
+vicious.register(myDiskWidget, vicious.widgets.fs,
+    function (widget, args)
+        used = args["{/ used_p}"]
+        color = "white"
+        if used <= 50 then
+            color = "green"
+        elseif used <= 90 then
+            color = "yellow"
+        else
+            color = "red"
+        end
+        return "Disk: <span color='" .. color .. "'>" .. used .. "%</span> | "
+    end
+)
+
+myDiskIOWidget = widget({ type = "textbox" })
+vicious.register(myDiskIOWidget, vicious.widgets.dio,
+    function (widget, args)
+        return "I/O: " .. args["{sda total_kb}"] .. "K | "
+    end
+)
+
+myNetIOWidget = widget({ type = "textbox" })
+vicious.register(myNetIOWidget, vicious.widgets.net,
+    function (widget, args)
+        return "Net: " .. args["{eth0 down_kb}"] .. "D/" .. args["{eth0 up_kb}"] .. "U | "
+    end
+)
+
+myWifiWidget = widget({ type = "textbox" })
+vicious.register(myWifiWidget, vicious.widgets.wifi,
+    function (widget, args)
+        linp = args["{linp}"]
+        if linp == 0
+            then return ""
+            else return args["{ssid}"] .. ": ".. linp .. "% | "
+        end
+    end
+, 57, "eth0")
 
 myBatWidget = widget({ type = "textbox" })
 vicious.register(myBatWidget, vicious.widgets.bat,
     function (widget, args)
         if args[2] >= 50 then
             return "Bat: <span color='green'>" .. args[2] .. "</span> | "
-        elseif args[2] <= 20 then
+        elseif args[2] >= 20 then
             return "Bat: <span color='yellow'>" .. args[2] .. "</span> | "
         else
             naughty.notify({title = "Battery Warning", text = "Battery Low! " .. args[2] .. " left!",
@@ -168,8 +226,13 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
-        myCpuWidget,
         myBatWidget,
+        myCpuWidget,
+        myMemWidget,
+        myDiskWidget,
+        myDiskIOWidget,
+        myNetIOWidget,
+        myWifiWidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
