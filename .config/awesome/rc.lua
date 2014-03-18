@@ -77,7 +77,7 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = widget({ type = "textbox" })
-vicious.register(mytextclock, vicious.widgets.date, "%F %R", 10)
+vicious.register(mytextclock, vicious.widgets.date, "%F %R ", 10)
 
 myCpuWidget = widget({ type = "textbox" })
 vicious.register(myCpuWidget, vicious.widgets.cpu, "CPU: $1% $2% | ")
@@ -124,7 +124,7 @@ vicious.register(myDiskIOWidget, vicious.widgets.dio,
 myNetIOWidget = widget({ type = "textbox" })
 vicious.register(myNetIOWidget, vicious.widgets.net,
     function (widget, args)
-        return "Net: " .. args["{eth0 down_kb}"] .. "D/" .. args["{eth0 up_kb}"] .. "U | "
+        return " Net: " .. args["{eth0 down_kb}"] .. "D/" .. args["{eth0 up_kb}"] .. "U | "
     end
 )
 
@@ -420,9 +420,4 @@ end)
 
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- }}}
-
--- {{{ Widgets
-os.execute("nm-applet &")
-os.execute("volti &")
 -- }}}
