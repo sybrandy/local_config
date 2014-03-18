@@ -137,7 +137,7 @@ vicious.register(myWifiWidget, vicious.widgets.wifi,
             else return args["{ssid}"] .. ": ".. linp .. "% | "
         end
     end
-, 57, "eth0")
+, 57, "wlan0")
 
 myBatWidget = widget({ type = "textbox" })
 vicious.register(myBatWidget, vicious.widgets.bat,
