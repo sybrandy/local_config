@@ -3,7 +3,7 @@
 # for examples
 
 export EDITOR=vim
-PATH=$PATH:~/apps/bin
+export PATH=$PATH:~/apps/bin
 
 export AWT_TOOLKIT=MToolkit
 
