@@ -131,5 +131,11 @@ let g:neosnippet#snippets_directory="~/.vim/snippets/"
 Bundle 'davidoc/taskpaper.vim'
 let g:task_paper_date_format = "%Y-%m-%dT%H:%M:%S%z"
 
+" GnuPG config
+Bundle "jamessan/vim-gnupg"
+let g:GPGPreferArmor=1
+let g:GPGPreferSign=1
+let g:GPGExecutable="gpg2"
+
 " This needs to be done after all the vundel config is taken care of.
 filetype plugin indent on

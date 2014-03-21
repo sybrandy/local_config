@@ -1,0 +1,17 @@
+1. Create an empty file with the following command:
+
+gpg --encrypt --sign --armour -r sybrandy@gmail.com -o test.gpg test.txt
+
+This is good for when we want to encrypt personal files.  To interact with a
+different user, we need to change the value for "-r" to the target user.
+
+2. Cannot verify signed files with the --verify option.  That option is only
+for separate signature files.  Decrypting a file will verify it's signature.
+
+3. To preserve signing the files, need to explicitly set the sign flag by
+doing the following:
+
+  1. :GPGEditOptions
+  2. Add a line for the value "sign"
+  3. Close the buffer.
+  4. Verify by calling :GPGViewOptions
