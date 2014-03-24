@@ -29,6 +29,11 @@ if [ -n "$PS1" ]; then
         export CATALINA_HOME=~/apps/tomcat
     fi
 
+    # Configuration for Google go, if installed.
+    if [ -e ~/apps/go ]; then
+        export GOROOT=~/apps/go
+    fi
+
     TEMP=/tmp/
 
     # don't put duplicate lines in the history. See bash(1) for more options
