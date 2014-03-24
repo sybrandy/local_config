@@ -24,11 +24,6 @@ if [ -n "$PS1" ]; then
     # Create symlinks to local-installed executables in the apps/bin directory.
     # ls <dir> | xargs -I {} ln -s <dir>/{} {}
 
-    # If dmd is installed, add to the path.
-    if [ -e ~/apps/dmd2/linux/bin64 ]; then
-        PATH=$PATH:~/apps/dmd2/linux/bin64
-    fi
-
     # Configuration for Tomcat, if installed.
     if [ -e ~/apps/tomcat ]; then
         export CATALINA_HOME=~/apps/tomcat
