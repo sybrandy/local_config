@@ -50,6 +50,9 @@ let g:rbpt_colorpairs = [
 
 " Used currently just to see which branch we're working on.
 Bundle "git://github.com/tpope/vim-fugitive.git"
+Bundle "airblade/vim-gitgutter"
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
 
 " Perform gitv operations within vim.
 Bundle "git://github.com/gregsexton/gitv"
@@ -80,8 +83,6 @@ Bundle 'http://github.com/sjl/gundo.vim.git'
 map <leader>g :GundoToggle<CR>
 
 Bundle 'bling/vim-airline'
-
-Bundle 'mhinz/vim-signify'
 
 Bundle 'ivyl/vim-bling'
 
