@@ -10,10 +10,6 @@ Plugin 'L9'
 " Plugin 'dbext.vim'
 " Plugin 'git://github.com/tpope/vim-rails.git'
 
-" File Management
-Plugin 'http://github.com/scrooloose/nerdtree.git'
-nnoremap <Leader>n :NERDTreeToggle<CR>
-
 " Quickly comment/uncomment
 Plugin 'tComment'
 
@@ -57,7 +53,7 @@ Plugin 'git://github.com/gregsexton/gitv'
 Plugin 'https://github.com/scrooloose/syntastic.git'
 let g:syntastic_mode_map = { 'mode' : 'active', 'passive_filetypes': ['scala','java']}
 
-" Show TODO, FIXME, and more within the given file. (<leader>l)
+" Show TODO, FIXME, and more within the given file. (<leader>tl)
 Plugin 'TaskList.vim'
 map <leader>tl :TaskList<cr>
 
@@ -71,8 +67,6 @@ Plugin 'git://github.com/tpope/vim-endwise.git'
 
 Plugin 'git://github.com/tpope/vim-eunuch.git'
 
-Plugin 'git://github.com/mikelue/vim-maven-plugin.git'
-
 Plugin 'derekwyatt/vim-scala'
 
 Plugin 'http://github.com/sjl/gundo.vim.git'
@@ -82,8 +76,6 @@ Plugin 'bling/vim-airline'
 
 Plugin 'ivyl/vim-bling'
 
-Plugin 'https://github.com/Raimondi/delimitMate.git'
-
 Plugin 'https://github.com/Shougo/vimproc.vim.git'
 Plugin 'https://github.com/Shougo/unite.vim.git'
 Plugin 'https://github.com/Shougo/unite-outline.git'
@@ -91,19 +83,20 @@ Plugin 'https://github.com/Shougo/unite-outline.git'
 if executable('ag')
   let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --hidden -g ""'
   let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nocolor -t --noheading -S'
+  let g:unite_source_grep_default_opts = '--nocolor -t --noheading -S -i'
   let g:unite_source_grep_recursive_opt = ''
 elseif executable('ack-grep')
   let g:unite_source_grep_command = 'ack-grep'
-  let g:unite_source_grep_default_opts = '--no-heading --no-color -a -H'
+  let g:unite_source_grep_default_opts = '--no-heading --no-color -a -H -i'
   let g:unite_source_grep_recursive_opt = '-r'
 endif
-map <leader>f :Unite -start-insert -no-split file_rec/async<cr>
-map <leader>b :Unite -quick-match -auto-preview -no-split buffer<cr>
-map <leader>s :Unite -auto-preview -no-split grep:.<cr>
-map <leader>l :Unite outline<cr>
+map <leader>f :Unite -start-insert -no-split -buffer-name=files file_rec/async<cr>
+map <leader>b :Unite -quick-match -auto-preview -buffer-name=buffers -no-split buffer<cr>
+map <leader>s :Unite -auto-preview -no-split -buffer-name=search grep:.<cr>
+map <leader>l :Unite -start-insert -buffer-name=outline outline<cr>
+map <leader>y :Unite -no-split -buffer-name=yank history/yank<cr>
 
-map <leader>m :Unite menu<cr>
+map <leader>m :Unite -start-insert menu<cr>
 
 Plugin 'https://github.com/benmills/vimux.git'
 let g:VimuxOrientation='h'
@@ -134,10 +127,8 @@ let g:GPGPreferArmor=1
 let g:GPGPreferSign=1
 let g:GPGExecutable='gpg2'
 
-Plugin 'terryma/vim-expand-region'
-
 Plugin 'myusuf3/numbers.vim'
-nnoremap <F3> :NumbersToggle<CR>
+nnoremap <leader>tn :NumbersToggle<CR>
 
 Plugin 'zirrostig/vim-schlepp'
 vmap <unique> <up>    <Plug>SchleppUp

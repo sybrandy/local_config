@@ -5,26 +5,11 @@ let g:unite_source_menu_menus.unite = {
     \'description' : 'Unite Commands',
 \}
 let g:unite_source_menu_menus.unite.command_candidates = [
-    \['List Files                        ,f', 'Unite -start-insert file_rec/async'],
-    \['List Buffers                      ,b', 'Unite -quick-match -auto-preview buffer'],
-    \['Search Files                      ,s', 'Unite -auto-preview grep:.'],
-    \['Show Outline                      ,l', 'Unite outline'],
-\]
-
-" Menu items for Gundo Commands
-let g:unite_source_menu_menus.gundo = {
-    \'description' : 'Gundo Commands',
-\}
-let g:unite_source_menu_menus.gundo.command_candidates = [
-    \['Toggle Gundo                      ,g', 'GundoToggle'],
-\]
-
-" Menu items for TaskList Commands
-let g:unite_source_menu_menus.tasklist = {
-    \'description' : 'TaskList Commands',
-\}
-let g:unite_source_menu_menus.tasklist.command_candidates = [
-    \['Show Task List                   ,tl', 'TaskList'],
+    \['List Files                        ,f', 'Unite -start-insert -no-split -buffer-name=files file_rec/async'],
+    \['List Buffers                      ,b', 'Unite -quick-match -auto-preview -buffer-name=buffers -no-split buffer'],
+    \['Search Files                      ,s', 'Unite -auto-preview -no-split -buffer-name=search grep:.'],
+    \['Show Outline                      ,l', 'Unite -start-insert -buffer-name=outline outline'],
+    \['Show Yank History                 ,y', 'Unite -no-split -buffer-name=yank history/yank'],
 \]
 
 " Menu items for Vimux commands
@@ -32,8 +17,33 @@ let g:unite_source_menu_menus.vimux = {
     \'description' : 'Vimux Commands',
 \}
 let g:unite_source_menu_menus.vimux.command_candidates = [
-    \['Promt Command                    ,vp', 'VimuxPromptCommand'],
+    \['Prompt Command                   ,vp', 'VimuxPromptCommand'],
     \['Run Last Command                 ,vl', 'VimuxRunLastCommand'],
     \['Close Runner                     ,vq', 'VimuxCloseRunner'],
     \['Interrupt Runner                 ,vx', 'VimuxInterruptRunner'],
+\]
+
+" Menu items for Git.
+let g:unite_source_menu_menus.git = {
+    \'description' : 'Git Commands',
+\}
+let g:unite_source_menu_menus.git.command_candidates = [
+    \['Go to next hunk                   ]h', 'GitGutterNextHunk'],
+    \['Go to prev hunk                   [h', 'GitGutterPrevHunk'],
+    \['Stage hunk                       ,hs', 'GitGutterStageHunk'],
+    \['Revert hunk                      ,hr', 'GitGutterRevertHunk'],
+    \['View branch history            :Gitv', 'Gitv'],
+    \['View file history             :Gitv!', 'Gitv!'],
+    \['View repo status            :Gstatus', 'Gstatus'],
+    \['Commit changes              :Gcommit', 'Gcommit'],
+\]
+
+" Menu items for other commands
+let g:unite_source_menu_menus.other = {
+    \'description' : 'Other Commands',
+\}
+let g:unite_source_menu_menus.other.command_candidates = [
+    \['Toggle Gundo                      ,g', 'GundoToggle'],
+    \['Show Task List                   ,tl', 'TaskList'],
+    \['Toggle numbering                 ,tn', 'NumbersToggle'],
 \]
