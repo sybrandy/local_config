@@ -1,26 +1,43 @@
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+  if !isdirectory(expand('~/.vim/bundle/neobundle.vim'))
+    echo "Installing NeoBundle\n"
+    silent execute '!mkdir -p ~/.vim/bundle'
+    silent execute '!git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim'
+  endif
+endif
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch "Shougo/neobundle.vim"
 
-Plugin 'gmarik/vundle'
+" NOTES:
+" 1. Re-look at NeoBundleLazy for plugins that are file-type specific.
+"    - Does this works with autoload?
+" 2. Periodically call NeoBundleGC.  Perhaps make this part of an update?
+" 3. Remember that specific revisions can be specified.
+" 4. Use the depends option (neobundle-options-depends)
+" 5. For plugins that need make or similar, use the build option.
+" (neobundle-options-build)
+" 6. augroup may need to be set for certain plugins.
+" (neobundle-options-augroup)
 
-Plugin 'L9'
+NeoBundle 'L9'
 
 " For Rails development.
-" Plugin 'dbext.vim'
-" Plugin 'git://github.com/tpope/vim-rails.git'
+" NeoBundle 'dbext.vim'
+" NeoBundle 'git://github.com/tpope/vim-rails.git'
 
 " Quickly comment/uncomment
-Plugin 'tComment'
+NeoBundle 'tComment'
 
 " Color Scheme
-Plugin 'redstring.vim'
+NeoBundle 'redstring.vim'
 
 " Organize data in a tabular format.
-Plugin 'https://github.com/godlygeek/tabular.git'
+NeoBundle 'https://github.com/godlygeek/tabular.git'
 
 " Color the parentheses by their nesting level.
-Plugin 'https://github.com/kien/rainbow_parentheses.vim'
+NeoBundle 'https://github.com/kien/rainbow_parentheses.vim'
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -41,47 +58,47 @@ let g:rbpt_colorpairs = [
     \ ]
 
 " Used currently just to see which branch we're working on.
-Plugin 'git://github.com/tpope/vim-fugitive.git'
-Plugin 'airblade/vim-gitgutter'
+NeoBundle 'airblade/vim-gitgutter', {'depends': 'tpope/vim-fugitive'}
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
 " Perform gitv operations within vim.
-Plugin 'git://github.com/gregsexton/gitv'
+NeoBundle 'git://github.com/gregsexton/gitv'
 
 " Syntax checking for supported file.
-Plugin 'https://github.com/scrooloose/syntastic.git'
+NeoBundle 'https://github.com/scrooloose/syntastic.git'
 let g:syntastic_mode_map = { 'mode' : 'active', 'passive_filetypes': ['scala','java']}
 
 " Show TODO, FIXME, and more within the given file. (<leader>tl)
-Plugin 'TaskList.vim'
+NeoBundle 'TaskList.vim'
 map <leader>tl :TaskList<cr>
 
-Plugin 'git://github.com/chreekat/vim-paren-crosshairs.git'
+NeoBundle 'git://github.com/chreekat/vim-paren-crosshairs.git'
 
-Plugin 'https://github.com/tpope/vim-markdown.git'
+NeoBundleLazy 'tpope/vim-markdown'
+autocmd Filetype md,mkdown,mdown NeoBundleSource vim-markdown
 
-Plugin 'https://github.com/Yggdroot/indentLine.git'
+NeoBundle 'https://github.com/Yggdroot/indentLine.git'
 
-Plugin 'git://github.com/tpope/vim-endwise.git'
+NeoBundle 'git://github.com/tpope/vim-endwise.git'
 
-Plugin 'git://github.com/tpope/vim-eunuch.git'
+NeoBundle 'git://github.com/tpope/vim-eunuch.git'
 
-Plugin 'derekwyatt/vim-scala'
+NeoBundleLazy 'derekwyatt/vim-scala'
+autocmd Filetype scala NeoBundleSource vim-scala
 
-Plugin 'http://github.com/sjl/gundo.vim.git'
+NeoBundle 'http://github.com/sjl/gundo.vim.git'
 map <leader>g :GundoToggle<CR>
 
-Plugin 'bling/vim-airline'
+NeoBundle 'bling/vim-airline', {'depends': 'tpope/vim-fugitive'}
 
-Plugin 'ivyl/vim-bling'
+" NeoBundle 'ivyl/vim-bling'
 
-Plugin 'https://github.com/Shougo/vimproc.vim.git'
-Plugin 'https://github.com/Shougo/unite.vim.git'
-Plugin 'https://github.com/Shougo/unite-outline.git'
+NeoBundle 'Shougo/vimproc.vim', { 'build': {'unix': 'make'}}
+NeoBundle 'Shougo/unite-outline', {'depends': 'Shougo/unite.vim'}
 " For ag or ack.
 if executable('ag')
-  let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --hidden -g ""'
+  " let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --hidden -g ""'
   let g:unite_source_grep_command = 'ag'
   let g:unite_source_grep_default_opts = '--nocolor -t --noheading -S -i'
   let g:unite_source_grep_recursive_opt = ''
@@ -90,15 +107,24 @@ elseif executable('ack-grep')
   let g:unite_source_grep_default_opts = '--no-heading --no-color -a -H -i'
   let g:unite_source_grep_recursive_opt = '-r'
 endif
-map <leader>f :Unite -start-insert -no-split -buffer-name=files file_rec/async<cr>
+" Detect if in a source controlled directory.  If not, then fall back to the
+" file_rec/async
+if !empty(glob(".git"))
+    map <leader>f :Unite -start-insert -no-split -buffer-name=files file_rec/git<cr>
+else
+    map <leader>f :Unite -start-insert -no-split -buffer-name=files file_rec/async<cr>
+endif
 map <leader>b :Unite -quick-match -auto-preview -buffer-name=buffers -no-split buffer<cr>
 map <leader>s :Unite -auto-preview -no-split -buffer-name=search grep:.<cr>
 map <leader>l :Unite -start-insert -buffer-name=outline outline<cr>
 map <leader>y :Unite -no-split -buffer-name=yank history/yank<cr>
 
+" NeoBundle Commands
+map <leader>nu :Unite -no-split -buffer-name=neobundle neobundle/update -log<cr>
+
 map <leader>m :Unite -start-insert menu<cr>
 
-Plugin 'https://github.com/benmills/vimux.git'
+NeoBundle 'https://github.com/benmills/vimux.git'
 let g:VimuxOrientation='h'
 let g:VimuxHeight='40'
 map <Leader>vp :VimuxPromptCommand<CR>
@@ -107,8 +133,7 @@ map <Leader>vq :VimuxCloseRunner<CR>
 map <Leader>vx :VimuxInterruptRunner<CR>
 
 " Snippets.
-Plugin 'Shougo/neocomplcache'
-Plugin 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet', {'depends': 'Shougo/neocomplcache' }
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -118,23 +143,25 @@ endif
 let g:neosnippet#snippets_directory='~/.vim/snippets/'
 
 " Task management/TODO List
-Plugin 'davidoc/taskpaper.vim'
+NeoBundle 'davidoc/taskpaper.vim'
 let g:task_paper_date_format = '%Y-%m-%dT%H:%M:%S%z'
 
 " GnuPG config
-Plugin 'jamessan/vim-gnupg'
+NeoBundle 'jamessan/vim-gnupg'
 let g:GPGPreferArmor=1
 let g:GPGPreferSign=1
 let g:GPGExecutable='gpg2'
 
-Plugin 'myusuf3/numbers.vim'
+NeoBundle 'myusuf3/numbers.vim'
 nnoremap <leader>tn :NumbersToggle<CR>
 
-Plugin 'zirrostig/vim-schlepp'
+NeoBundle 'zirrostig/vim-schlepp'
 vmap <unique> <up>    <Plug>SchleppUp
 vmap <unique> <down>  <Plug>SchleppDown
 vmap <unique> <left>  <Plug>SchleppLeft
 vmap <unique> <right> <Plug>SchleppRight
 
-" This needs to be done after all the vundel config is taken care of.
+" This needs to be done after all the NeoBundle config is taken care of.
+NeoBundleCheck
+call neobundle#end()
 filetype plugin indent on
