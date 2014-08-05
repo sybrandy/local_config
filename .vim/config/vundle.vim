@@ -88,7 +88,7 @@ NeoBundleLazy 'derekwyatt/vim-scala'
 autocmd Filetype scala NeoBundleSource vim-scala
 
 NeoBundle 'http://github.com/sjl/gundo.vim.git'
-map <leader>g :GundoToggle<CR>
+map <leader>gu :GundoToggle<CR>
 
 NeoBundle 'bling/vim-airline', {'depends': 'tpope/vim-fugitive'}
 
@@ -96,6 +96,8 @@ NeoBundle 'bling/vim-airline', {'depends': 'tpope/vim-fugitive'}
 
 NeoBundle 'Shougo/vimproc.vim', { 'build': {'unix': 'make'}}
 NeoBundle 'Shougo/unite-outline', {'depends': 'Shougo/unite.vim'}
+NeoBundle 'thinca/vim-unite-history', {'depends': 'Shougo/unite.vim'}
+NeoBundle 'moznion/unite-git-conflict.vim', {'depends': 'Shougo/unite.vim'}
 " For ag or ack.
 if executable('ag')
   " let g:unite_source_rec_async_command = 'ag --nocolor --nogroup --hidden -g ""'
@@ -116,8 +118,13 @@ else
 endif
 map <leader>b :Unite -quick-match -auto-preview -buffer-name=buffers -no-split buffer<cr>
 map <leader>s :Unite -auto-preview -no-split -buffer-name=search grep:.<cr>
-map <leader>l :Unite -start-insert -buffer-name=outline outline<cr>
+map <leader>o :Unite -start-insert -buffer-name=outline outline<cr>
+map <leader>l :Unite -start-insert -buffer-name=lines line<cr>
+map <leader>r :Unite -start-insert -buffer-name=registers register<cr>
 map <leader>y :Unite -no-split -buffer-name=yank history/yank<cr>
+map <leader>gc :Unite git-conflict<cr>
+map <leader>hc :Unite -no-split -buffer-name=command history/command<cr>
+map <leader>hs :Unite -no-split -buffer-name=search history/search<cr>
 
 " NeoBundle Commands
 map <leader>nu :Unite -no-split -buffer-name=neobundle neobundle/update -log<cr>
@@ -155,11 +162,11 @@ let g:GPGExecutable='gpg2'
 NeoBundle 'myusuf3/numbers.vim'
 nnoremap <leader>tn :NumbersToggle<CR>
 
-NeoBundle 'zirrostig/vim-schlepp'
-vmap <unique> <up>    <Plug>SchleppUp
-vmap <unique> <down>  <Plug>SchleppDown
-vmap <unique> <left>  <Plug>SchleppLeft
-vmap <unique> <right> <Plug>SchleppRight
+NeoBundle 'akhaku/vim-java-unused-imports'
+
+NeoBundle 'vim-scripts/neat.vim'
+
+NeoBundle 'terryma/vim-multiple-cursors'
 
 " This needs to be done after all the NeoBundle config is taken care of.
 NeoBundleCheck
