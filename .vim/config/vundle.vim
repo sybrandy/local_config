@@ -96,6 +96,7 @@ NeoBundle 'bling/vim-airline', {'depends': 'tpope/vim-fugitive'}
 
 NeoBundle 'Shougo/vimproc.vim', { 'build': {'unix': 'make'}}
 NeoBundle 'Shougo/unite-outline', {'depends': 'Shougo/unite.vim'}
+NeoBundle 'Shougo/vimfiler.vim', {'depends': 'Shougo/unite.vim'}
 NeoBundle 'thinca/vim-unite-history', {'depends': 'Shougo/unite.vim'}
 NeoBundle 'moznion/unite-git-conflict.vim', {'depends': 'Shougo/unite.vim'}
 " For ag or ack.
@@ -122,6 +123,7 @@ map <leader>o :Unite -start-insert -buffer-name=outline outline<cr>
 map <leader>l :Unite -start-insert -buffer-name=lines line<cr>
 map <leader>r :Unite -start-insert -buffer-name=registers register<cr>
 map <leader>y :Unite -no-split -buffer-name=yank history/yank<cr>
+map <leader>vf :VimFiler<cr>
 map <leader>gc :Unite git-conflict<cr>
 map <leader>hc :Unite -no-split -buffer-name=command history/command<cr>
 map <leader>hs :Unite -no-split -buffer-name=search history/search<cr>
@@ -167,6 +169,8 @@ NeoBundle 'akhaku/vim-java-unused-imports'
 NeoBundle 'vim-scripts/neat.vim'
 
 NeoBundle 'terryma/vim-multiple-cursors'
+
+NeoBundle 'dzeban/vim-log-syntax'
 
 " This needs to be done after all the NeoBundle config is taken care of.
 NeoBundleCheck

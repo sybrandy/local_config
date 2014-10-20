@@ -6,6 +6,7 @@ let g:unite_source_menu_menus.unite = {
 \}
 let g:unite_source_menu_menus.unite.command_candidates = [
     \['List Files                        ,f', 'Unite -start-insert -no-split -buffer-name=files file_rec/async'],
+    \['Browse Files                     ,vf', 'VimFiler'],
     \['List Buffers                      ,b', 'Unite -quick-match -auto-preview -buffer-name=buffers -no-split buffer'],
     \['Search Files                      ,s', 'Unite -auto-preview -no-split -buffer-name=search grep:.'],
     \['Show Outline                      ,o', 'Unite -start-insert -buffer-name=outline outline'],
