@@ -172,6 +172,8 @@ NeoBundle 'terryma/vim-multiple-cursors'
 
 NeoBundle 'dzeban/vim-log-syntax'
 
+NeoBundle 'chrisbra/NrrwRgn'
+
 " This needs to be done after all the NeoBundle config is taken care of.
 NeoBundleCheck
 call neobundle#end()
