@@ -116,3 +116,15 @@ weather(){ curl -s "http://api.wunderground.com/auto/wui/geo/ForecastXML/index.x
 nstat(){
     netstat -tulp --numeric-ports | awk '/tcp|udp/ {print $1,"\t",$4,"\t",$7;}' | column -t
 }
+lsssh ()
+{
+  lsof -i4 -s TCP:ESTABLISHED -n | grep '^ssh' | while read conn
+  do
+    ip=$(echo $conn | grep -oE '\->[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}:[^ ]+')
+    ip=${ip/->/}
+    domain=$(dig -x ${ip%:*} +short)
+    domain=${domain%.}
+    # display nonstandard port if relevant
+    printf "%s (%s)\n" $domain  ${ip/:ssh}
+  done | column -t
+}
