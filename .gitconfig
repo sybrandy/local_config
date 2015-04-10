@@ -15,6 +15,8 @@
     standup = "!git log --since '3 days ago' --author `git config user.email` --pretty=format:'%Cgreen%ar\t%Creset%s'"
     purr = pull --rebase
     listbranch = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    changes = diff --name-status
+    diffset = diff --stat
 [merge]
 	conflictstyle = diff3
 [diff]
