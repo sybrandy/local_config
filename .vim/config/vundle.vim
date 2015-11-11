@@ -190,6 +190,8 @@ map <leader>vf :VimFiler<cr>
 map <leader>gc :Unite git-conflict<cr>
 map <leader>hc :Unite -no-split -buffer-name=command history/command<cr>
 map <leader>hs :Unite -no-split -buffer-name=search history/search<cr>
+map <leader>n :UniteNext<cr>
+map <leader>p :UnitePrevious<cr>
 
 " NeoBundle Commands
 map <leader>nu :Unite -no-split -buffer-name=neobundle neobundle/update -log<cr>

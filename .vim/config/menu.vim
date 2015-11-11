@@ -16,6 +16,8 @@ let g:unite_source_menu_menus.unite.command_candidates = [
     \['Show Git Conflicts                ,gc', 'Unite git-conflict'],
     \['Show Command History              ,hc', 'Unite -no-split -buffer-name=command history/command'],
     \['Show Search History               ,hs', 'Unite -no-split -buffer-name=search history/search'],
+    \['Go to next result                 ,n', 'UniteNext'],
+    \['Go to previous result             ,p', 'UnitePrevious'],
 \]
 
 " Menu items for Vimux commands
