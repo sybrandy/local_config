@@ -23,10 +23,6 @@ NeoBundleFetch "Shougo/neobundle.vim"
 
 NeoBundle 'L9'
 
-" For Rails development.
-" NeoBundle 'dbext.vim'
-" NeoBundle 'git://github.com/tpope/vim-rails.git'
-
 " Quickly comment/uncomment
 NeoBundle 'tComment'
 
@@ -152,7 +148,7 @@ function! LightLineMode()
   let fname = expand('%:t')
   return  fname == '__Gundo__' ? 'Gundo' :
         \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ fname =~ 'NERD_tree' ? 'NERDTree' :
+        \ &ft == 'vimfiler' ? 'VimFiler' :
         \ &ft == 'unite' ? 'Unite' :
         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
@@ -180,7 +176,7 @@ if !empty(glob(".git"))
 else
     map <leader>f :Unite -start-insert -no-split -buffer-name=files file_rec/async<cr>
 endif
-map <leader>b :Unite -quick-match -auto-preview -buffer-name=buffers -no-split buffer<cr>
+map <leader>b :Unite -auto-preview -start-insert -buffer-name=buffers -no-split buffer<cr>
 map <leader>s :Unite -auto-preview -no-split -buffer-name=search grep:.<cr>
 map <leader>o :Unite -start-insert -buffer-name=outline outline<cr>
 map <leader>l :Unite -start-insert -buffer-name=lines line<cr>
@@ -217,27 +213,25 @@ endif
 let g:neosnippet#snippets_directory='~/.vim/snippets/'
 
 " Task management/TODO List
-NeoBundle 'davidoc/taskpaper.vim'
+NeoBundleLazy 'davidoc/taskpaper.vim'
 let g:task_paper_date_format = '%Y-%m-%dT%H:%M:%S%z'
 
 " GnuPG config
-NeoBundle 'jamessan/vim-gnupg'
+NeoBundleLazy 'jamessan/vim-gnupg'
 let g:GPGPreferArmor=1
 let g:GPGPreferSign=1
 let g:GPGExecutable='gpg2'
 
-NeoBundle 'myusuf3/numbers.vim'
+NeoBundleLazy 'myusuf3/numbers.vim'
 nnoremap <leader>tn :NumbersToggle<CR>
 
-NeoBundle 'akhaku/vim-java-unused-imports'
+NeoBundleLazy 'vim-scripts/neat.vim'
 
-NeoBundle 'vim-scripts/neat.vim'
-
-NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundleLazy 'terryma/vim-multiple-cursors'
 
 NeoBundle 'dzeban/vim-log-syntax'
 
-NeoBundle 'chrisbra/NrrwRgn'
+NeoBundleLazy 'fatih/vim-go'
 
 " This needs to be done after all the NeoBundle config is taken care of.
 NeoBundleCheck
