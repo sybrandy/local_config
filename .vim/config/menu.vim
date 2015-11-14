@@ -47,6 +47,16 @@ let g:unite_source_menu_menus.git.command_candidates = [
 \]
 
 " Menu items for other commands
+let g:unite_source_menu_menus.qq = {
+    \'description' : 'QQ Commands',
+\}
+let g:unite_source_menu_menus.qq.command_candidates = [
+    \['Open Request                        ', ':call QQ#request#open()'],
+    \['Open Request History                ', ':call QQ#history#open()'],
+    \['Open Collection List                ', ':call QQ#collection#open()'],
+\]
+
+" Menu items for other commands
 let g:unite_source_menu_menus.other = {
     \'description' : 'Other Commands',
 \}

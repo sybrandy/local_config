@@ -88,7 +88,7 @@ map <leader>gu :GundoToggle<CR>
 
 NeoBundle 'itchyny/lightline.vim'
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
+      \ 'colorscheme': 'jellybeans',
       \ 'mode_map': { 'c': 'NORMAL' },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
@@ -204,6 +204,7 @@ map <Leader>vx :VimuxInterruptRunner<CR>
 
 " Snippets.
 NeoBundle 'Shougo/neosnippet', {'depends': 'Shougo/neocomplcache' }
+NeoBundle 'Shougo/neosnippet-snippets', {'depends': 'Shougo/neosnippet' }
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -232,6 +233,8 @@ NeoBundleLazy 'terryma/vim-multiple-cursors'
 NeoBundle 'dzeban/vim-log-syntax'
 
 NeoBundleLazy 'fatih/vim-go'
+
+NeoBundleLazy 'nicwest/QQ.vim'
 
 " This needs to be done after all the NeoBundle config is taken care of.
 NeoBundleCheck

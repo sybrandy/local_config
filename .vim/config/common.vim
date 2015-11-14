@@ -63,3 +63,6 @@ endif
 au FileType qf wincmd J
 
 let g:airline_powerline_fonts=1
+
+" Disable the Q key.
+map Q <Nop>
