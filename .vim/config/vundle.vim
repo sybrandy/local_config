@@ -59,7 +59,7 @@ nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
 " Perform gitv operations within vim.
-NeoBundle 'git://github.com/gregsexton/gitv'
+NeoBundle 'https://github.com/gregsexton/gitv.git'
 
 " Syntax checking for supported file.
 NeoBundle 'https://github.com/scrooloose/syntastic.git'
@@ -69,21 +69,21 @@ let g:syntastic_mode_map = { 'mode' : 'active', 'passive_filetypes': ['scala','j
 NeoBundle 'TaskList.vim'
 map <leader>tl :TaskList<cr>
 
-NeoBundle 'git://github.com/chreekat/vim-paren-crosshairs.git'
+NeoBundle 'https://github.com/chreekat/vim-paren-crosshairs.git'
 
 NeoBundleLazy 'tpope/vim-markdown'
 autocmd Filetype md,mkdown,mdown NeoBundleSource vim-markdown
 
 NeoBundle 'https://github.com/Yggdroot/indentLine.git'
 
-NeoBundle 'git://github.com/tpope/vim-endwise.git'
+NeoBundle 'https://github.com/tpope/vim-endwise.git'
 
-NeoBundle 'git://github.com/tpope/vim-eunuch.git'
+NeoBundle 'https://github.com/tpope/vim-eunuch.git'
 
 NeoBundleLazy 'derekwyatt/vim-scala'
 autocmd Filetype scala NeoBundleSource vim-scala
 
-NeoBundle 'http://github.com/sjl/gundo.vim.git'
+NeoBundle 'https://github.com/sjl/gundo.vim.git'
 map <leader>gu :GundoToggle<CR>
 
 NeoBundle 'itchyny/lightline.vim'
