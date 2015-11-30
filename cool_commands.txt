@@ -22,10 +22,10 @@ $ ping -i 60 -a $IPADDRESS
 --------------------------------------------------------------------------------
 
 Shorthand/DSL for retreiving and manipulating historical commands.
-$ !12 	Command number 12 from ~/.bash_history
-$ !-2 	Command before last
-$ !zi 	Last command that started 'zi'
-$ !! 	Last command (same as !-1)
+$ !12   Command number 12 from ~/.bash_history
+$ !-2   Command before last
+$ !zi   Last command that started 'zi'
+$ !!    Last command (same as !-1)
 
 Digression: Oops - forgot the sudo
 :w !sudo tee %
@@ -37,10 +37,10 @@ Digression: Oops - forgot the sudo
 History expansion 3: Modifiers
 
     Modifies behaviour of preceding event/word designators
-    $ !zip:p 	Print previous command starting 'zip' but don't execute it
-    $ cd !$:h 	Change directory to "head" of previous last argument (similar to using dirname)
-    $ !!:s/foo/bar 	Execute previous command but replace 'foo' with 'bar'
-    $ ^foo^bar 	Shorthand for the above
+    $ !zip:p    Print previous command starting 'zip' but don't execute it
+    $ cd !$:h   Change directory to "head" of previous last argument (similar to using dirname)
+    $ !!:s/foo/bar  Execute previous command but replace 'foo' with 'bar'
+    $ ^foo^bar  Shorthand for the above
 
 --------------------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ david@earth:~ $ root@mysite-app1:tmp $
 
     if [ `id -u` = 0 ]; then
         PS1="\[\e[31m\]\u@\h:\W \$ \[\e[30m\]"
-    else 
+    else
         PS1="\[\e[34m\]\u@\h:\W \$ \[\e[30m\]"
     fi
     export PS1
@@ -81,7 +81,7 @@ cp /path/to/file /path/to/file.bak
     Can be used in sequences and with wildcards
 
 $ cssh mysite-{app,db}{1..32}
-$ ls *.{jpg,jpeg,png} 
+$ ls *.{jpg,jpeg,png}
 
 --------------------------------------------------------------------------------
 

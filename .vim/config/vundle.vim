@@ -236,6 +236,8 @@ NeoBundleLazy 'fatih/vim-go'
 
 NeoBundleLazy 'nicwest/QQ.vim'
 
+NeoBundle 'aserebryakov/filestyle'
+
 " This needs to be done after all the NeoBundle config is taken care of.
 NeoBundleCheck
 call neobundle#end()
