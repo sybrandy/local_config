@@ -10,6 +10,7 @@
 	status = auto
 [alias]
 	graph = log --graph --pretty=format:'\t%Cred%h %Cgreen(%ad - %ar)%Creset\t|%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=short
+	dgraph = log --stat --graph --pretty=format:'%Cred%h %Cgreen(%ad - %ar)%Creset |%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=short
 	co = commit -v
 	me = merge --no-ff --no-commit
 	st = status -sb
