@@ -73,6 +73,7 @@ NeoBundle 'https://github.com/chreekat/vim-paren-crosshairs.git'
 
 NeoBundleLazy 'tpope/vim-markdown'
 autocmd Filetype md,mkdown,mdown NeoBundleSource vim-markdown
+autocmd Filetype markdown setlocal tw=80 wrap noautoindent
 
 NeoBundle 'https://github.com/Yggdroot/indentLine.git'
 
