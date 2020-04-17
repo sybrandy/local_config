@@ -16,6 +16,7 @@ RUN apk upgrade && apk add vim git the_silver_searcher && \
 
 
 ENV TERM=xterm-256color
+ENV GOPATH=/work
 
 COPY vimrc .vimrc
 COPY lightline.vim /vimconfig/lightline.vim
