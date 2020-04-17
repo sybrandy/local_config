@@ -22,3 +22,22 @@ alias tmux='tmux -2'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+function runTests() {
+	RUNTESTS=0
+	inotifywait -e close_write,moved_to,create -r -m . |
+	while :
+	do
+	    if read -t 1 ; then
+		# echo "Have changes."
+		RUNTESTS=1
+	    else [ $? -lt 128 ] && exit
+		# echo "Timeout"
+		if [[ $RUNTESTS = 1 ]]; then
+		    # echo "Run the tests."
+		    clear ; make tests
+		    RUNTESTS=0
+		fi
+	    fi
+	done
+}
