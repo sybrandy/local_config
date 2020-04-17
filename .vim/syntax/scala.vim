@@ -1,1 +1,0 @@
-../bundle/vim-scala/syntax/scala.vim

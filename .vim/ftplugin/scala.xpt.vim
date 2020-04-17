@@ -1,1 +1,0 @@
-../bundle/vim-scala/ftplugin/scala.xpt.vim
