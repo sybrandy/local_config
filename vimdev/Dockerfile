@@ -9,6 +9,8 @@ RUN apk upgrade && apk add vim git the_silver_searcher && \
 	vim -u NONE -c "helptags lightline.vim/doc" -c q && \
 	git clone https://github.com/ctrlpvim/ctrlp.vim.git && \
 	vim -u NONE -c "helptags ctrlp.vim/doc" -c q && \
+	git clone https://github.com/fatih/vim-go.git && \
+	vim -u NONE -c "helptags vim-go/doc" -c q && \
 	git clone https://github.com/dyng/ctrlsf.vim.git && \
 	vim -u NONE -c "helptags ctrlsf.vim/doc" -c q
 
