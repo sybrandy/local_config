@@ -1,7 +1,6 @@
-#FROM alpine:3.11
 FROM golang:1.14.2-alpine
 
-RUN apk upgrade && apk add vim git wget gcc the_silver_searcher && \
+RUN apk upgrade && apk add git git-perl git-email gcc the_silver_searcher vim && \
 	mkdir -p /vimconfig/pack/plugins/start/ && \
 	cd /vimconfig/pack/plugins/start/ && \
 	git clone https://tpope.io/vim/fugitive.git && \

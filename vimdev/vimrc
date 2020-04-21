@@ -1,5 +1,5 @@
 filetype plugin indent off
-set runtimepath=/vimconfig/,/vimconfig/pack/plugins/start/*/
+set runtimepath=/vimconfig/,/vimconfig/pack/plugins/start/*/,/usr/share/vim/vim82
 
 filetype plugin indent on
 
