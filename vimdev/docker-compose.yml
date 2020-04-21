@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+        vim-dev:
+                container_name: vimdev
+                image: caseyvim
+                tty: true
+                volumes:
+                        - /home/dev/go:/go/
+                        - /home/dev/.gitconfig:/etc/gitconfig
