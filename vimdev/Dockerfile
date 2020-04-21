@@ -13,6 +13,10 @@ RUN apk upgrade && apk add git git-perl git-email gcc the_silver_searcher vim &&
 	vim -u NONE -c "helptags vim-go/doc" -c q && \
 	git clone https://github.com/dyng/ctrlsf.vim.git && \
 	vim -u NONE -c "helptags ctrlsf.vim/doc" -c q && \
+	git clone https://github.com/tomtom/tcomment_vim.git && \
+	vim -u NONE -c "helptags tcomment_vim/doc" -c q && \
+	git clone https://github.com/aserebryakov/filestyle.git && \
+	vim -u NONE -c "helptags filestyle/doc" -c q && \
 	vim -u NONE -c ":GoInstallBinaries" -c q
 
 
