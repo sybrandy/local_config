@@ -14,6 +14,11 @@ set number
 set dir=/tmp/
 set autoread
 set ut=100
+set backspace=indent,eol,start
+set undofile
+set undodir=/tmp/
+set undolevels=1000
+set undoreload=10000
 au CursorHold,CursorHoldI,FocusGained,BufEnter * checktime
 
 syntax on
