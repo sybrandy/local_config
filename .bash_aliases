@@ -25,7 +25,12 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 function runTests() {
 	RUNTESTS=0
-	inotifywait -e close_write,moved_to,create -r -m . |
+	DIR="."
+	if [[ -e dub.json ]]; then
+		DIR="source/"
+	fi
+	echo "Watching ${DIR}"
+	inotifywait -e close_write,moved_to,create -r -m ${DIR} |
 	while :
 	do
 	    if read -t 1 ; then
