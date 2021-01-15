@@ -29,7 +29,18 @@ set suffixes+=.info,.aux,.log,.dvi,.bbl,.out,.o,.lo
 
 syntax on
 
-runtime! lightline.vim
+" Ensure the following is set in .bashrc if this doesn't work by default:
+" export TERM=xterm-256color
+set laststatus=2
+
+if !has('gui_running')
+  set t_Co=256
+endif
+set noshowmode
+let g:lightline= {
+      \ 'colorscheme': 'solarized',
+  \}
+
 
 map <leader>f :CtrlP<cr>
 map <leader>s <Plug>CtrlSFPrompt
